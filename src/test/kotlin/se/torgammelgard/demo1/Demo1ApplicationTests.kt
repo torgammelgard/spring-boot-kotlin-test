@@ -9,22 +9,16 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.boot.test.web.client.postForEntity
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import org.springframework.util.LinkedMultiValueMap
-import org.springframework.util.MultiValueMap
-import javax.sql.DataSource
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 class Demo1ApplicationTests(@Autowired val testRestTemplate: TestRestTemplate) {
 
-    @Autowired
-    lateinit var dataSource: DataSource
+    private val testArticle = Article("Test article")
 
     @Value("\${blog.title}")
     lateinit var blogTitle: String
@@ -41,11 +35,15 @@ class Demo1ApplicationTests(@Autowired val testRestTemplate: TestRestTemplate) {
     }
 
     @Test
-    fun `Assert that article can be posted`() {
-        val headers = HttpHeaders()
-        val article = Article("test article", 28)
-        val request = HttpEntity(article, headers)
-        val entity = testRestTemplate.postForEntity<String>("/article", request)
-        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+    fun `Assert that an article can be posted and retrieved`() {
+        val articleEntity = testRestTemplate.postForEntity<Article>("/article", testArticle)
+
+        assertThat(articleEntity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(articleEntity.body == testArticle)
+
+        val getEntity = testRestTemplate.getForEntity<Article>("/article/${articleEntity.body?.id}")
+
+        assertThat(getEntity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(getEntity.body == testArticle)
     }
 }

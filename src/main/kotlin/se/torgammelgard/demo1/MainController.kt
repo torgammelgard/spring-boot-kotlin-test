@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody
 class MainController {
 
     private val articles = listOf(
-            Article("The extended phenotype", 1),
-            Article("A tale of two cities", 2),
-            Article("Animal farm", 3))
+            Article("The extended phenotype"),
+            Article("A tale of two cities"),
+            Article("Animal farm"))
 
     @Value("\${blog.title}")
     private lateinit var blogTitle: String

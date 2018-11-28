@@ -1,3 +1,11 @@
 package se.torgammelgard.demo1
 
-data class Article(val title: String, val id: Long)
+import javax.persistence.*
+
+@Entity
+data class Article(@Column val title: String) {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    val id: Long = 0
+}
