@@ -1,10 +1,21 @@
 {{> header}}
-
-<p>Blog with articles</p>
-{{#articles}}
-  <ul>
-    <li>{{id}}</li>
-    <li>{{title}}</li>
-  </ul>
-{{/articles}}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-auto">
+      <h1>Blog with articles</h1>
+    </div>
+  </div>
+  <div class="row justify-content-md-center no-gutters">
+    <div class="col-sm-auto">
+      {{#articles}}
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p>And id : {{id}}</p>
+          </div>
+        </div>
+      {{/articles}}
+    </div>
+  </div>
+</div>
 {{> footer }}
