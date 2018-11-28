@@ -11,11 +11,19 @@
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
-            <p>And id : {{id}}</p>
           </div>
         </div>
       {{/articles}}
     </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <form action="/article" method="post">
+      <div class="form-group">
+        <label for="title_id">Article title</label>
+        <input type="text" class="form-control" id="title_id" name="title">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </form>
   </div>
 </div>
 {{> footer }}

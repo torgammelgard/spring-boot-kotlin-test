@@ -1,9 +1,9 @@
-package se.torgammelgard.demo1
+package se.torgammelgard.demo1.entities
 
 import javax.persistence.*
 
 @Entity
-data class Article(@Column val title: String) {
+data class Article(@Column val title: String?) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
