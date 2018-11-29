@@ -19,7 +19,7 @@ import se.torgammelgard.demo1.entities.Article
 @ActiveProfiles("test")
 class Demo1ApplicationTests(@Autowired val testRestTemplate: TestRestTemplate) {
 
-    private val testArticle = Article("Test article")
+    private val testArticle = Article("Test article", "Some content")
 
     @Value("\${blog.title}")
     lateinit var blogTitle: String
