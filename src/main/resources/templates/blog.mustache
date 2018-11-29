@@ -11,6 +11,7 @@
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
+            <h6 class="card-body">{{content}}</h6>
           </div>
         </div>
       {{/articles}}
@@ -21,6 +22,12 @@
       <div class="form-group">
         <label for="title_id">Article title</label>
         <input type="text" class="form-control" id="title_id" name="title">
+      </div>
+      <div class="form-group">
+        <label for="content_id">Article content</label>
+        <input type="text" class="form-control" id="content_id" name="content">
+      </div>
+      <div class="form-group">
         <button class="btn btn-primary" type="submit">Submit</button>
       </div>
     </form>

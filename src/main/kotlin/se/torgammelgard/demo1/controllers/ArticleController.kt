@@ -21,7 +21,7 @@ class ArticleController {
     @PostMapping
     fun addArticleFromForm(@RequestParam body: Map<String, String>): ModelAndView {
         return if (body["title"] != null && body["title"]!!.isNotEmpty()) {
-            articleRepository.save(Article(body["title"]))
+            articleRepository.save(Article(body["title"], body["content"]))
             ModelAndView("redirect:/blog", HttpStatus.OK)
         } else {
             ModelAndView("redirect:/error", HttpStatus.INTERNAL_SERVER_ERROR)
